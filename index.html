@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InstaShare - Your Digital Life</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+        <div class="nav-left">
+            <h1 class="logo">InstaShare</h1>
+        </div>
+        <div class="nav-right">
+            <button class="nav-icon" onclick="switchView('home')"><i class="fab fa-instagram"></i></button>
+            <button class="nav-icon" onclick="openChat()"><i class="fas fa-paper-plane"></i></button>
+            <button class="nav-icon" onclick="openProfile()"><img src="assets/profile-me.jpg" alt="Profile" class="profile-pic-small"></button>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <main id="main-content">
+        
+        <!-- 1. HOME FEED VIEW -->
+        <section id="view-home" class="view active">
+            <!-- Stories Bar -->
+            <div class="stories-container">
+                <div class="story-item">
+                    <div class="story-ring add"><i class="fas fa-plus"></i></div>
+                    <span class="story-name">Your Story</span>
+                </div>
+                <div class="story-item">
+                    <div class="story-ring"><img src="assets/story1.jpg" alt="Story"></div>
+                    <span class="story-name">sahil_dev</span>
+                </div>
+                <div class="story-item">
+                    <div class="story-ring"><img src="assets/story2.jpg" alt="Story"></div>
+                    <span class="story-name">cyber_guru</span>
+                </div>
+                <div class="story-item">
+                    <div class="story-ring seen"><img src="assets/story3.jpg" alt="Story"></div>
+                    <span class="story-name">net_sec</span>
+                </div>
+            </div>
+
+            <!-- Feed Posts -->
+            <div id="feed-container">
+                <!-- Posts injected via JS -->
+            </div>
+        </section>
+
+        <!-- 2. REELS VIEW -->
+        <section id="view-reels" class="view">
+            <div class="reels-header">
+                <h2>Reels</h2>
+                <button class="nav-icon"><i class="fas fa-ellipsis-h"></i></button>
+            </div>
+            <div class="reels-container">
+                <!-- Reel 1 -->
+                <div class="reel-item">
+                    <div class="reel-video-container">
+                        <video src="assets/reel1.mp4" autoplay loop muted playsinline></video>
+                        <div class="reel-overlay">
+                            <div class="reel-user">
+                                <img src="assets/profile1.jpg" alt="User">
+                                <div>
+                                    <h4>sahil_dev</h4>
+                                    <p>Following</p>
+                                </div>
+                                <button class="follow-btn reel-follow">Follow</button>
+                            </div>
+                            <div class="reel-actions">
+                                <button class="reel-action like-btn" onclick="toggleReelLike(this)"><i class="far fa-heart"></i><span>1.2k</span></button>
+                                <button class="reel-action"><i class="far fa-comment"></i><span>45</span></button>
+                                <button class="reel-action"><i class="fas fa-paper-plane"></i></button>
+                                <button class="reel-action"><i class="fas fa-bookmark"></i></button>
+                            </div>
+                            <div class="reel-caption">
+                                <p>Latest DevOps tips #coding #tech</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Reel 2 (Duplicate structure for scrolling) -->
+                 <div class="reel-item">
+                    <div class="reel-video-container">
+                        <video src="assets/reel2.mp4" autoplay loop muted playsinline></video>
+                        <div class="reel-overlay">
+                            <div class="reel-user">
+                                <img src="assets/profile2.jpg" alt="User">
+                                <div>
+                                    <h4>cyber_guru</h4>
+                                    <p>Security Expert</p>
+                                </div>
+                                <button class="follow-btn reel-follow">Follow</button>
+                            </div>
+                            <div class="reel-actions">
+                                <button class="reel-action like-btn" onclick="toggleReelLike(this)"><i class="far fa-heart"></i><span>890</span></button>
+                                <button class="reel-action"><i class="far fa-comment"></i><span>12</span></button>
+                                <button class="reel-action"><i class="fas fa-paper-plane"></i></button>
+                                <button class="reel-action"><i class="fas fa-bookmark"></i></button>
+                            </div>
+                            <div class="reel-caption">
+                                <p>Penetration testing basics</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. CHAT VIEW -->
+        <section id="view-chat" class="view">
+            <div class="chat-header">
+                <button class="back-btn" onclick="switchView('home')"><i class="fas fa-arrow-left"></i></button>
+                <div class="chat-user">
+                    <img src="assets/profile1.jpg" alt="User">
+                    <div>
+                        <h4>sahil_dev</h4>
+                        <span class="status">Active now</span>
+                    </div>
+                </div>
+                <div class="chat-actions">
+                    <button class="chat-call-btn" onclick="initiateCall('voice')"><i class="fas fa-phone"></i></button>
+                    <button class="chat-call-btn" onclick="initiateCall('video')"><i class="fas fa-video"></i></button>
+                    <button class="chat-more-btn"><i class="fas fa-ellipsis-v"></i></button>
+                </div>
+            </div>
+            
+            <div class="chat-messages" id="chat-messages">
+                <!-- Messages injected via JS -->
+                <div class="message incoming"><div class="bubble">Hey! Did you check the new repo?</div></div>
+                <div class="message outgoing"><div class="bubble">Yes, the Ban Generator is looking solid. 🚀</div></div>
+                <div class="message incoming"><div class="bubble">Great. I'll push the UI updates tonight.</div></div>
+            </div>
+
+            <div class="chat-input-area">
+                <input type="text" id="chat-input" placeholder="Message..." onkeypress="handleChatKey(event)">
+                <button class="send-btn" onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </section>
+
+        <!-- 4. PROFILE VIEW -->
+        <section id="view-profile" class="view">
+            <div class="profile-header">
+                <div class="profile-pic-large"><img src="assets/profile-me.jpg" alt="Me"></div>
+                <div class="profile-stats">
+                    <div class="stat"><span class="stat-num">124</span><span class="stat-label">Posts</span></div>
+                    <div class="stat"><span class="stat-num">8.2k</span><span class="stat-label">Followers</span></div>
+                    <div class="stat"><span class="stat-num">340</span><span class="stat-label">Following</span></div>
+                </div>
+                <div class="profile-info">
+                    <h3>DeepHat <i class="fas fa-check-circle verified"></i></h3>
+                    <p>Cybersecurity & DevOps Engineer</p>
+                    <button class="edit-profile-btn">Edit Profile</button>
+                </div>
+            </div>
+            <div class="profile-grid">
+                <!-- 3x3 Grid of user posts -->
+                <div class="grid-item"><img src="assets/post1.jpg" alt="Post"></div>
+                <div class="grid-item"><img src="assets/post2.jpg" alt="Post"></div>
+                <div class="grid-item"><img src="assets/post3.jpg" alt="Post"></div>
+                <div class="grid-item"><img src="assets/post4.jpg" alt="Post"></div>
+                <div class="grid-item"><img src="assets/post5.jpg" alt="Post"></div>
+                <div class="grid-item"><img src="assets/post6.jpg" alt="Post"></div>
+                <div class="grid-item"><img src="assets/post7.jpg" alt="Post"></div>
+                <div class="grid-item"><img src="assets/post8.jpg" alt="Post"></div>
+                <div class="grid-item"><img src="assets/post9.jpg" alt="Post"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <button class="bottom-nav-item active" onclick="switchView('home', this)"><i class="fas fa-home"></i></button>
+        <button class="bottom-nav-item" onclick="switchView('search', this)"><i class="fas fa-search"></i></button>
+        <button class="bottom-nav-item" onclick="openCreate()"><i class="fas fa-plus-square"></i></button>
+        <button class="bottom-nav-item" onclick="switchView('reels', this)"><i class="fas fa-play-circle"></i></button>
+        <button class="bottom-nav-item" onclick="openProfile()"><img src="assets/profile-me.jpg" alt="Profile" class="bottom-profile-pic"></button>
+    </nav>
+
+    <!-- Call Overlay (Voice/Video) -->
+    <div id="call-overlay" class="call-overlay hidden">
+        <div class="call-ui">
+            <div class="call-user-info">
+                <div class="call-avatar"><img src="assets/profile1.jpg" alt="User"></div>
+                <h2>sahil_dev</h2>
+                <p id="call-status">Calling...</p>
+            </div>
+            
+            <div class="call-controls">
+                <button class="call-control-btn" id="mute-btn"><i class="fas fa-microphone"></i></button>
+                <button class="call-control-btn" id="video-toggle" onclick="toggleVideoCall()"><i class="fas fa-video"></i></button>
+                <button class="call-control-btn" id="speaker-btn"><i class="fas fa-volume-up"></i></button>
+                <button class="call-control-btn end-call" onclick="endCall()"><i class="fas fa-phone-down"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
